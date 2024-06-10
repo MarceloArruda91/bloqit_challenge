@@ -29,8 +29,8 @@ class Rent:
     id: str = field(default_factory=generate_id)
     locker_id: Optional[str] = field(default=None, metadata={"data_key": "lockerId"})
     weight: float = 0.0
-    size: RentSize = ''
-    status: RentStatus = 'CREATED'
+    size: RentSize = ""
+    status: RentStatus = "CREATED"
 
     def update_status(self, new_status: RentStatus):
         self.status = new_status

@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, validate, ValidationError
+from marshmallow import Schema, fields, ValidationError
 from app.models import RentSize, RentStatus, LockerStatus
 
 
