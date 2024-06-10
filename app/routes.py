@@ -1,20 +1,20 @@
 from flask import Blueprint, jsonify, request
 from app.services import BloqService, LockerService, RentService
 from app.repositories import BloqRepository, LockerRepository, RentRepository
-from app.models import Bloq, Locker, Rent, RentStatus, LockerStatus
+from app.models import Bloq, Locker, Rent, RentStatus, LockerStatus, RentSize
 
-bloq_repository = BloqRepository("data/bloqs.json")
-locker_repository = LockerRepository("data/lockers.json")
-rent_repository = RentRepository("data/rents.json")
+bloq_repository = BloqRepository('data/bloqs.json')
+locker_repository = LockerRepository('data/lockers.json')
+rent_repository = RentRepository('data/rents.json')
 
 bloq_service = BloqService(bloq_repository)
 locker_service = LockerService(locker_repository)
 rent_service = RentService(rent_repository, locker_service)
 
-api = Blueprint("api", __name__)
+api = Blueprint('api', __name__)
 
 
-@api.route("/bloqs", methods=["GET"])
+@api.route('/bloqs', methods=['GET'])
 def get_bloqs():
     """
     Retrieve a list of all Bloqs.
@@ -38,7 +38,7 @@ def get_bloqs():
     return jsonify([bloq.__dict__ for bloq in bloqs])
 
 
-@api.route("/bloqs/<bloq_id>", methods=["GET"])
+@api.route('/bloqs/<bloq_id>', methods=['GET'])
 def get_bloq(bloq_id):
     """
     Retrieve a specific Bloq by its ID.
@@ -65,10 +65,10 @@ def get_bloq(bloq_id):
         description: Bloq not found
     """
     bloq = bloq_service.get_by_id(bloq_id)
-    return jsonify(bloq.__dict__) if bloq else ("", 404)
+    return jsonify(bloq.__dict__) if bloq else ('', 404)
 
 
-@api.route("/bloqs", methods=["POST"])
+@api.route('/bloqs', methods=['POST'])
 def create_bloq():
     """
     Create a new Bloq.
@@ -106,7 +106,7 @@ def create_bloq():
     return jsonify(created_bloq.__dict__), 201
 
 
-@api.route("/lockers", methods=["GET"])
+@api.route('/lockers', methods=['GET'])
 def get_lockers():
     """
     Retrieve a list of all Lockers.
@@ -132,7 +132,7 @@ def get_lockers():
     return jsonify([locker.__dict__ for locker in lockers])
 
 
-@api.route("/lockers/<locker_id>", methods=["GET"])
+@api.route('/lockers/<locker_id>', methods=['GET'])
 def get_locker(locker_id):
     """
     Retrieve a specific Locker by its ID.
@@ -161,10 +161,10 @@ def get_locker(locker_id):
         description: Locker not found
     """
     locker = locker_service.get_by_id(locker_id)
-    return jsonify(locker.__dict__) if locker else ("", 404)
+    return jsonify(locker.__dict__) if locker else ('', 404)
 
 
-@api.route("/lockers", methods=["POST"])
+@api.route('/lockers', methods=['POST'])
 def create_locker():
     """
     Create a new Locker.
@@ -207,7 +207,7 @@ def create_locker():
     return jsonify(created_locker.__dict__), 201
 
 
-@api.route("/lockers/<locker_id>/status", methods=["PUT"])
+@api.route('/lockers/<locker_id>/status', methods=['PUT'])
 def update_locker_status(locker_id):
     """
     Update the status of a Locker.
@@ -249,13 +249,13 @@ def update_locker_status(locker_id):
         description: Locker not found
     """
     data = request.json
-    status = LockerStatus[data["status"]]
-    occupied = data["is_occupied"]
+    status = LockerStatus[data['status']]
+    occupied = data['is_occupied']
     updated_locker = locker_service.update_locker_status(locker_id, status, occupied)
-    return jsonify(updated_locker.__dict__) if updated_locker else ("", 404)
+    return jsonify(updated_locker.__dict__) if updated_locker else ('', 404)
 
 
-@api.route("/rents", methods=["GET"])
+@api.route('/rents', methods=['GET'])
 def get_rents():
     """
     Retrieve a list of all Rents.
@@ -283,7 +283,7 @@ def get_rents():
     return jsonify([rent.__dict__ for rent in rents])
 
 
-@api.route("/rents/<rent_id>", methods=["GET"])
+@api.route('/rents/<rent_id>', methods=['GET'])
 def get_rent(rent_id):
     """
     Retrieve a specific Rent by its ID.
@@ -314,10 +314,10 @@ def get_rent(rent_id):
         description: Rent not found
     """
     rent = rent_service.get_by_id(rent_id)
-    return jsonify(rent.__dict__) if rent else ("", 404)
+    return jsonify(rent.__dict__) if rent else ('', 404)
 
 
-@api.route("/rents", methods=["POST"])
+@api.route('/rents/rent', methods=['POST'])
 def create_rent():
     """
     Create a new Rent.
@@ -329,15 +329,15 @@ def create_rent():
         schema:
           type: object
           required:
+            - locker_id
             - weight
             - size
-            - status
           properties:
+            locker_id:
+              type: string
             weight:
               type: number
             size:
-              type: string
-            status:
               type: string
     responses:
       201:
@@ -355,14 +355,19 @@ def create_rent():
               type: string
             status:
               type: string
+      404:
+        description: Locker not found or is already occupied
     """
     data = request.json
     new_rent = Rent(**data)
-    created_rent = rent_service.create_rent(new_rent)
-    return jsonify(created_rent.__dict__), 201
+    created_rent = rent_service.create_rent(new_rent, data['locker_id'])
+    if created_rent:
+        return jsonify(created_rent.__dict__), 201
+    else:
+        return jsonify({"error": "Locker not found or is already occupied"}), 404
 
 
-@api.route("/rents/<rent_id>/status", methods=["PUT"])
+@api.route('/rents/<rent_id>/status', methods=['PUT'])
 def update_rent_status(rent_id):
     """
     Update the status of a Rent.
@@ -403,6 +408,6 @@ def update_rent_status(rent_id):
         description: Rent not found
     """
     data = request.json
-    status = RentStatus[data["status"]]
+    status = RentStatus[data['status']]
     updated_rent = rent_service.update_rent_status(rent_id, status)
-    return jsonify(updated_rent.__dict__) if updated_rent else ("", 404)
+    return jsonify(updated_rent.__dict__) if updated_rent else ('', 404)

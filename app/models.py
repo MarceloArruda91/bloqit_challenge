@@ -1,5 +1,12 @@
 from enum import Enum
 from dataclasses import dataclass, field
+from typing import Optional
+import uuid
+
+
+def generate_id() -> str:
+    """Generate a unique ID."""
+    return str(uuid.uuid4())
 
 
 class RentStatus(Enum):
@@ -19,11 +26,11 @@ class RentSize(Enum):
 
 @dataclass
 class Rent:
-    id: str
-    locker_id: str = field(metadata={"data_key": "lockerId"})
-    weight: float
-    size: RentSize
-    status: RentStatus
+    id: str = field(default_factory=generate_id)
+    locker_id: Optional[str] = field(default=None, metadata={"data_key": "lockerId"})
+    weight: float = 0.0
+    size: RentSize = ''
+    status: RentStatus = 'CREATED'
 
     def update_status(self, new_status: RentStatus):
         self.status = new_status
@@ -36,10 +43,10 @@ class LockerStatus(Enum):
 
 @dataclass
 class Locker:
-    id: str
-    bloq_id: str = field(metadata={"data_key": "bloqId"})
-    status: LockerStatus
-    is_occupied: bool = field(metadata={"data_key": "isOccupied"})
+    id: str = field(default_factory=generate_id)
+    bloq_id: Optional[str] = field(default=None, metadata={"data_key": "bloqId"})
+    status: LockerStatus = LockerStatus.OPEN
+    is_occupied: bool = field(default=False, metadata={"data_key": "isOccupied"})
 
     def update_status(self, new_status: LockerStatus, occupied: bool):
         self.status = new_status
@@ -48,6 +55,6 @@ class Locker:
 
 @dataclass
 class Bloq:
-    id: str
-    title: str
-    address: str
+    id: str = field(default_factory=generate_id)
+    title: str = ""
+    address: str = ""

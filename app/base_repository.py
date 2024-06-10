@@ -1,9 +1,10 @@
 import json
 from typing import List, Type, TypeVar, Optional, Generic
-from dataclasses import fields, asdict
+from dataclasses import fields, asdict, is_dataclass
 from app.utils import generate_id
+from enum import Enum
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
 class BaseRepository(Generic[T]):
@@ -43,7 +44,7 @@ class BaseRepository(Generic[T]):
         Returns:
             List[T]: A list of entity instances.
         """
-        with open(self.data_file, "r", encoding="utf-8") as f:
+        with open(self.data_file, 'r', encoding='utf-8') as f:
             return [self.cls(**self.map_data_keys(item)) for item in json.load(f)]
 
     def map_data_keys(self, data: dict) -> dict:
@@ -102,7 +103,22 @@ class BaseRepository(Generic[T]):
         """
         Saves the current state of data to the JSON file.
         """
-        with open(self.data_file, "w", encoding="utf-8") as f:
-            json.dump(
-                [asdict(item) for item in self.data], f, ensure_ascii=False, indent=4
-            )
+        with open(self.data_file, 'w', encoding='utf-8') as f:
+            json.dump([self.serialize_entity(item) for item in self.data], f, ensure_ascii=False, indent=4)
+
+    def serialize_entity(self, entity: T) -> dict:
+        """
+        Serializes an entity to a dictionary, converting Enums to their values.
+
+        Parameters:
+            entity (T): The entity instance to serialize.
+
+        Returns:
+            dict: The serialized entity as a dictionary.
+        """
+        entity_dict = asdict(entity)
+        for field in fields(self.cls):
+            value = entity_dict.get(field.name)
+            if isinstance(value, Enum):
+                entity_dict[field.name] = value.value
+        return entity_dict
