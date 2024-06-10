@@ -25,6 +25,13 @@ class BloqSchema(Schema):
 
 class LockerSchema(Schema):
     id = fields.Str(dump_only=True)
+    bloq_id = fields.Str(required=True)
+    status = fields.Str(required=True, validate=validate_locker_status)
+    is_occupied = fields.Bool(required=True)
+
+class LockerSchemaPut(Schema):
+    id = fields.Str(dump_only=True)
+    bloq_id = fields.Str(dump_only=True)
     status = fields.Str(required=True, validate=validate_locker_status)
     is_occupied = fields.Bool(required=True)
 
@@ -38,7 +45,7 @@ class RentSchema(Schema):
 
 
 class RentSchemaPut(Schema):
-    id = fields.Str(dump_only=True)
+    id = fields.Str(required=True)
     status = fields.Str(required=True, validate=validate_rent_status)
 
 

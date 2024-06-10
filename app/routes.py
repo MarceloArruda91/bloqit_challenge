@@ -8,7 +8,7 @@ from app.schemas import (
     LockerSchema,
     RentSchema,
     RentCreateSchema,
-    RentSchemaPut,
+    RentSchemaPut, LockerSchemaPut,
 )
 
 bloq_repository = BloqRepository("data/bloqs.json")
@@ -276,15 +276,15 @@ def update_locker_status(locker_id):
     """
     data = request.json
     try:
-        validated_data = LockerSchema().load(data)
+        validated_data = LockerSchemaPut().load(data)
     except ValidationError as err:
         return jsonify(err.messages), 400
-    status = LockerStatus[validated_data["status"]]
+    status = validated_data["status"]
     occupied = validated_data["is_occupied"]
     updated_locker = locker_service.update_locker_status(locker_id, status, occupied)
     if not updated_locker:
         return jsonify({"error": "Locker not found"}), 404
-    result = LockerSchema().dump(updated_locker)
+    result = LockerSchemaPut().dump(updated_locker)
     return jsonify(result)
 
 

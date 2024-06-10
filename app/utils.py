@@ -10,3 +10,8 @@ def select_unoccupied_locker(lockers):
         if not locker.is_occupied:
             return locker
     return None
+
+
+def generate_id() -> str:
+    """Generate a unique ID."""
+    return str(uuid.uuid4())

@@ -1,12 +1,8 @@
 from enum import Enum
 from dataclasses import dataclass, field
 from typing import Optional
-import uuid
 
-
-def generate_id() -> str:
-    """Generate a unique ID."""
-    return str(uuid.uuid4())
+from app.utils import generate_id
 
 
 class RentStatus(Enum):
@@ -24,6 +20,11 @@ class RentSize(Enum):
     XL = "XL"
 
 
+class LockerStatus(Enum):
+    OPEN = "OPEN"
+    CLOSED = "CLOSED"
+
+
 @dataclass
 class Rent:
     id: str = field(default_factory=generate_id)
@@ -34,11 +35,6 @@ class Rent:
 
     def update_status(self, new_status: RentStatus):
         self.status = new_status
-
-
-class LockerStatus(Enum):
-    OPEN = "OPEN"
-    CLOSED = "CLOSED"
 
 
 @dataclass

@@ -76,5 +76,293 @@
         "bloq_id": "78c8cea8-27cd-474e-bf27-4ab5a38ef2cf",
         "status": "OPEN",
         "is_occupied": true
+    },
+    {
+        "id": "27308d1b-4b72-444a-8c2f-6338fb71e9a8",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "7a0f7892-2e0a-4367-8f48-38226376d158",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "62bc3e63-9dbf-41b8-9996-78eaa5f4afc5",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "7fde7779-061a-4f7e-9b55-bd1ca1b8995b",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "ff75f4d1-46ba-472f-b1ec-e6ed8387e255",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "22b52d9c-d59a-477e-b368-d502160c11e7",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "14d56731-b373-43dd-ad33-486b83e4af01",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "01e01f82-1eee-4df6-b1f6-2c86195d6d94",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "8e7c8534-35f1-4e81-adff-74ede89dd513",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "ea4d1434-03f5-41d6-8614-7188e7b052b9",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "f7291a99-0440-4ac9-a5ba-c56f7272208d",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "ec9f099b-3b83-49d2-9452-a636bd850bb0",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "8a668848-370d-4343-af08-d0f14cebf4d5",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "9e97e93f-d436-47dd-aec1-181db6699c22",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "7ed1589f-7640-42f5-b99a-0103dce1402f",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "a55bc01a-d8c9-4dfa-8233-91e0b14428b8",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "619d5b22-1862-44d4-b804-e67159937c1e",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "8117fa42-636a-493c-bd9f-6a585b533f71",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "7adc9b53-9037-4d74-b9e2-5d8a6c93eeab",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "5f049378-85d3-48ed-b920-87d6e5a39550",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "e84ae74c-74c0-490f-9452-a834fa3abf2b",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "4362ddc8-8245-4ce6-a275-72921b1e3e9e",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "2c1c79e4-487d-4265-9423-fe156ce55eab",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "bf87b4ee-f23b-461b-a82e-0b922ea623b7",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "ef7be1b7-4d23-48ab-a4c7-4e79283aa7fe",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "2694ec8f-9158-4dfc-89a8-22cbd7bcd045",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "3898ada3-ed89-47b5-a6e8-1dd938895417",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "736410ae-a04b-46db-9c43-5ce41d69d30f",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "4ff910f3-214f-4f94-a0ae-262f6ac51484",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "51892689-acf1-4f62-8849-9f862721f3cd",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "6d9bf44c-36dc-42b6-b0f9-be5ff370a544",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "2123354f-2389-4707-80ea-1f460f0923e3",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "fbfa7c4a-583a-4e56-9074-668fb93446ae",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "349abf00-84bf-490c-b815-3c2afe10b570",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "e2f7c8c1-4706-4bd0-b2a5-54b3854c760f",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "88d6c52c-9094-4cf2-91b6-baeebb43cc79",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "79ccbe0a-0ca7-4457-868b-da8bf5bfd661",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "f753145a-97ed-4844-a7ce-1a096f08aae8",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "b2163472-a9c2-463a-b9cf-6d82a6f02d05",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "5584eb66-da8b-47ce-8a27-aefbc55f4994",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "e43703d3-f2c8-4be6-ad6c-106861d3a3cd",
+        "bloq_id": "existing-bloq-id",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "8c7e2f32-d09b-4d29-88ac-f6f42119b053",
+        "bloq_id": "existing-bloq-id",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "35dcb56f-f70f-4478-b585-03896fd69ccc",
+        "bloq_id": "",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "4a42cc4b-8135-43b1-b8d4-c4101bab976e",
+        "bloq_id": "",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "42931775-1933-40b8-b11f-66581ffbfcad",
+        "bloq_id": "",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "e0f045d4-de88-4aba-abf1-9e84f8c41760",
+        "bloq_id": "",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "5a9cfbdb-7cc3-4b6f-8426-773ec13e06e8",
+        "bloq_id": "",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "36f5a4ad-ec69-4c49-8f72-13bb6f82c383",
+        "bloq_id": "",
+        "status": "CLOSED",
+        "is_occupied": false
     }
 ]

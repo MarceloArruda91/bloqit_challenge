@@ -40,7 +40,7 @@ class LockerService(BaseService[Locker]):
             repository (LockerRepository): The repository instance.
         """
         super().__init__(repository)
-        self.repository: LockerRepository = repository  # Explicitly type the repository
+        self.repository: LockerRepository = repository
 
     def select_unoccupied_locker(self) -> Optional[Locker]:
         """
