@@ -124,5 +124,12 @@
         "weight": 15,
         "size": "XL",
         "status": "CREATED"
+    },
+    {
+        "id": "abd09b15-a432-4bae-b6ca-f1a17e45a8b0",
+        "locker_id": "a0b14f93-7187-4769-8485-a6765f2af442",
+        "weight": 12.0,
+        "size": "XL",
+        "status": "CREATED"
     }
 ]

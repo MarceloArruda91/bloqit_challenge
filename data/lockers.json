@@ -58,5 +58,23 @@
         "bloq_id": "72f33424-d4e9-4bf0-b6ea-214f1bce0bc0",
         "status": "CLOSED",
         "is_occupied": true
+    },
+    {
+        "id": "5be939f2-4ec8-4630-ab8c-69cfaadd4dbf",
+        "bloq_id": "78c8cea8-27cd-474e-bf27-4ab5a38ef2cf",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "fbbf6bb5-8476-4fc1-8634-990ace251b02",
+        "bloq_id": "78c8cea8-27cd-474e-bf27-4ab5a38ef2cf",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "a0b14f93-7187-4769-8485-a6765f2af442",
+        "bloq_id": "78c8cea8-27cd-474e-bf27-4ab5a38ef2cf",
+        "status": "OPEN",
+        "is_occupied": true
     }
 ]

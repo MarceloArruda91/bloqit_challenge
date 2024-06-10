@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
+from marshmallow import ValidationError
 from app.services import BloqService, LockerService, RentService
 from app.repositories import BloqRepository, LockerRepository, RentRepository
 from app.models import Bloq, Locker, Rent, RentStatus, LockerStatus, RentSize
+from app.schemas import BloqSchema, LockerSchema, RentSchema, RentCreateSchema, RentSchemaPut
 
 bloq_repository = BloqRepository('data/bloqs.json')
 locker_repository = LockerRepository('data/lockers.json')
@@ -12,7 +14,6 @@ locker_service = LockerService(locker_repository)
 rent_service = RentService(rent_repository, locker_service)
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/bloqs', methods=['GET'])
 def get_bloqs():
@@ -35,8 +36,8 @@ def get_bloqs():
                 type: string
     """
     bloqs = bloq_service.get_all()
-    return jsonify([bloq.__dict__ for bloq in bloqs])
-
+    result = BloqSchema(many=True).dump(bloqs)
+    return jsonify(result)
 
 @api.route('/bloqs/<bloq_id>', methods=['GET'])
 def get_bloq(bloq_id):
@@ -65,8 +66,10 @@ def get_bloq(bloq_id):
         description: Bloq not found
     """
     bloq = bloq_service.get_by_id(bloq_id)
-    return jsonify(bloq.__dict__) if bloq else ('', 404)
-
+    if not bloq:
+        return jsonify({"error": "Bloq not found"}), 404
+    result = BloqSchema().dump(bloq)
+    return jsonify(result)
 
 @api.route('/bloqs', methods=['POST'])
 def create_bloq():
@@ -101,10 +104,14 @@ def create_bloq():
               type: string
     """
     data = request.json
-    new_bloq = Bloq(**data)
+    try:
+        validated_data = BloqSchema().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    new_bloq = Bloq(**validated_data)
     created_bloq = bloq_service.create(new_bloq)
-    return jsonify(created_bloq.__dict__), 201
-
+    result = BloqSchema().dump(created_bloq)
+    return jsonify(result), 201
 
 @api.route('/lockers', methods=['GET'])
 def get_lockers():
@@ -129,8 +136,8 @@ def get_lockers():
                 type: boolean
     """
     lockers = locker_service.get_all()
-    return jsonify([locker.__dict__ for locker in lockers])
-
+    result = LockerSchema(many=True).dump(lockers)
+    return jsonify(result)
 
 @api.route('/lockers/<locker_id>', methods=['GET'])
 def get_locker(locker_id):
@@ -161,8 +168,10 @@ def get_locker(locker_id):
         description: Locker not found
     """
     locker = locker_service.get_by_id(locker_id)
-    return jsonify(locker.__dict__) if locker else ('', 404)
-
+    if not locker:
+        return jsonify({"error": "Locker not found"}), 404
+    result = LockerSchema().dump(locker)
+    return jsonify(result)
 
 @api.route('/lockers', methods=['POST'])
 def create_locker():
@@ -202,10 +211,14 @@ def create_locker():
               type: boolean
     """
     data = request.json
-    new_locker = Locker(**data)
+    try:
+        validated_data = LockerSchema().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    new_locker = Locker(**validated_data)
     created_locker = locker_service.create(new_locker)
-    return jsonify(created_locker.__dict__), 201
-
+    result = LockerSchema().dump(created_locker)
+    return jsonify(result), 201
 
 @api.route('/lockers/<locker_id>/status', methods=['PUT'])
 def update_locker_status(locker_id):
@@ -249,11 +262,17 @@ def update_locker_status(locker_id):
         description: Locker not found
     """
     data = request.json
-    status = LockerStatus[data['status']]
-    occupied = data['is_occupied']
+    try:
+        validated_data = LockerSchema().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    status = LockerStatus[validated_data['status']]
+    occupied = validated_data['is_occupied']
     updated_locker = locker_service.update_locker_status(locker_id, status, occupied)
-    return jsonify(updated_locker.__dict__) if updated_locker else ('', 404)
-
+    if not updated_locker:
+        return jsonify({"error": "Locker not found"}), 404
+    result = LockerSchema().dump(updated_locker)
+    return jsonify(result)
 
 @api.route('/rents', methods=['GET'])
 def get_rents():
@@ -280,8 +299,8 @@ def get_rents():
                 type: string
     """
     rents = rent_service.get_all()
-    return jsonify([rent.__dict__ for rent in rents])
-
+    result = RentSchema(many=True).dump(rents)
+    return jsonify(result)
 
 @api.route('/rents/<rent_id>', methods=['GET'])
 def get_rent(rent_id):
@@ -314,13 +333,16 @@ def get_rent(rent_id):
         description: Rent not found
     """
     rent = rent_service.get_by_id(rent_id)
-    return jsonify(rent.__dict__) if rent else ('', 404)
+    if not rent:
+        return jsonify({"error": "Rent not found"}), 404
+    result = RentSchema().dump(rent)
+    return jsonify(result)
 
 
 @api.route('/rents/rent', methods=['POST'])
 def create_rent():
     """
-    Create a new Rent.
+    Create a new Rent with a specific locker in a specific Bloq.
     ---
     parameters:
       - name: body
@@ -359,13 +381,17 @@ def create_rent():
         description: Locker not found or is already occupied
     """
     data = request.json
-    new_rent = Rent(**data)
-    created_rent = rent_service.create_rent(new_rent, data['locker_id'])
+    try:
+        validated_data = RentCreateSchema().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    new_rent = Rent(weight=validated_data['weight'], size=RentSize[validated_data['size']])
+    created_rent = rent_service.create_rent(new_rent, validated_data['locker_id'])
     if created_rent:
-        return jsonify(created_rent.__dict__), 201
+        result = RentSchema().dump(created_rent)
+        return jsonify(result), 201
     else:
         return jsonify({"error": "Locker not found or is already occupied"}), 404
-
 
 @api.route('/rents/<rent_id>/status', methods=['PUT'])
 def update_rent_status(rent_id):
@@ -408,6 +434,13 @@ def update_rent_status(rent_id):
         description: Rent not found
     """
     data = request.json
-    status = RentStatus[data['status']]
+    try:
+        validated_data = RentSchemaPut().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    status = RentStatus[validated_data['status']]
     updated_rent = rent_service.update_rent_status(rent_id, status)
-    return jsonify(updated_rent.__dict__) if updated_rent else ('', 404)
+    if not updated_rent:
+        return jsonify({"error": "Rent not found"}), 404
+    result = RentSchemaPut().dump(updated_rent)
+    return jsonify(result)
