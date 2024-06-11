@@ -2,13 +2,14 @@ from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 from app.services import BloqService, LockerService, RentService
 from app.repositories import BloqRepository, LockerRepository, RentRepository
-from app.models import Bloq, Locker, Rent, RentStatus, LockerStatus, RentSize
+from app.models import Bloq, Locker, Rent, RentStatus, RentSize
 from app.schemas import (
     BloqSchema,
     LockerSchema,
     RentSchema,
     RentCreateSchema,
-    RentSchemaPut, LockerSchemaPut,
+    RentSchemaPut,
+    LockerSchemaPut,
 )
 
 bloq_repository = BloqRepository("data/bloqs.json")

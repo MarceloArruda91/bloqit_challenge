@@ -12,11 +12,12 @@ class APITestCase(unittest.TestCase):
         # Initialize some sample data for testing
         self.sample_bloq = {"title": "Sample Bloq", "address": "123 Sample St"}
         self.sample_locker = {
-            "bloq_id": "",
+            "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
             "status": "OPEN",
             "is_occupied": False,
         }
-        self.sample_rent = {"locker_id": "2191e1b5-99c7-45df-8302-998be394be48", "weight": 10.5, "size": "M", "status": "CREATED"}
+        self.sample_rent = {"locker_id": "2191e1b5-99c7-45df-8302-998be394be48", "weight": 10.5, "size": "M",
+                            "status": "CREATED"}
 
     def test_get_bloqs(self):
         response = self.client.get("/api/bloqs")
@@ -96,7 +97,6 @@ class APITestCase(unittest.TestCase):
             data=json.dumps(updated_status),
             content_type="application/json",
         )
-        print(f'data = {response.data.decode()}')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.data.decode())
         self.assertEqual(data["status"], updated_status["status"])
@@ -107,13 +107,19 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_create_rent(self):
+        # Create a new locker
+        response = self.client.post(
+            "/api/lockers",
+            data=json.dumps(self.sample_locker),
+            content_type="application/json",
+        )
+        locker_id = json.loads(response.data.decode())["id"]
+        self.sample_rent["locker_id"] = locker_id
         response = self.client.post(
             "/api/rents/rent",
             data=json.dumps(self.sample_rent),
             content_type="application/json",
         )
-        print(f'request = {self.sample_rent}')
-        print(f'eita = {response.data.decode()} | status = {response.status_code}')
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.data.decode())
         self.assertIn("id", data)
@@ -121,9 +127,17 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(data["size"], self.sample_rent["size"])
 
     def test_get_rent(self):
+        # Create a new locker
+        response = self.client.post(
+            "/api/lockers",
+            data=json.dumps(self.sample_locker),
+            content_type="application/json",
+        )
+        locker_id = json.loads(response.data.decode())["id"]
+        self.sample_rent["locker_id"] = locker_id
         # Create a rent first
         response = self.client.post(
-            "/api/rents",
+            "/api/rents/rent",
             data=json.dumps(self.sample_rent),
             content_type="application/json",
         )
@@ -136,9 +150,17 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(data["id"], rent_id)
 
     def test_update_rent_status(self):
+        # Create a new locker
+        response = self.client.post(
+            "/api/lockers",
+            data=json.dumps(self.sample_locker),
+            content_type="application/json",
+        )
+        locker_id = json.loads(response.data.decode())["id"]
+        self.sample_rent["locker_id"] = locker_id
         # Create a rent first
         response = self.client.post(
-            "/api/rents",
+            "/api/rents/rent",
             data=json.dumps(self.sample_rent),
             content_type="application/json",
         )

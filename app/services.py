@@ -112,6 +112,7 @@ class RentService(BaseService[Rent]):
         if locker and not locker.is_occupied:
             rent.locker_id = locker.id
             rent.status = "CREATED"
+            rent.size = rent.size.name
             locker.update_status(LockerStatus.CLOSED, True)
             self.locker_service.repository.save()
             return self.repository.add(rent)
@@ -130,6 +131,6 @@ class RentService(BaseService[Rent]):
         """
         rent = self.get_by_id(rent_id)
         if rent:
-            rent.update_status(status)
+            rent.update_status(status.name)
             self.repository.save()
         return rent

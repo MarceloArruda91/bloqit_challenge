@@ -92,8 +92,8 @@
     {
         "id": "62bc3e63-9dbf-41b8-9996-78eaa5f4afc5",
         "bloq_id": "existing-bloq-id",
-        "status": "CLOSED",
-        "is_occupied": true
+        "status": "OPEN",
+        "is_occupied": false
     },
     {
         "id": "7fde7779-061a-4f7e-9b55-bd1ca1b8995b",
@@ -338,8 +338,8 @@
     {
         "id": "4a42cc4b-8135-43b1-b8d4-c4101bab976e",
         "bloq_id": "",
-        "status": "CLOSED",
-        "is_occupied": true
+        "status": "OPEN",
+        "is_occupied": false
     },
     {
         "id": "42931775-1933-40b8-b11f-66581ffbfcad",
@@ -382,5 +382,251 @@
         "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
         "status": "CLOSED",
         "is_occupied": false
+    },
+    {
+        "id": "58a354a4-9c7d-4817-a837-57223a03bd70",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "5ca80eab-59f8-4ebf-b961-6d44ef71f792",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "b0884acc-eafa-4f89-9980-9bd562bf3600",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "67db3329-7cf4-4dac-9656-6875b90be5dd",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "6a2e7d53-0a30-40a1-ba9d-cb9c815b5504",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "d3fc7246-21e2-40b2-a910-ef31a3828f22",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "32d9fcd2-aa03-426c-92b4-759bf667a34b",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "b1f7b6ee-98e1-44c8-9304-8847779b8610",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "209b4a89-6f41-4e4a-8b52-46c6c36fb061",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "ae19aa38-f054-428e-b440-0203cbd5f07a",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "01e4d963-72d7-421b-b2f1-9085ddb58e4b",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "9c7cf4f7-50af-420c-90d5-3d2641c5ed28",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "f45f201d-b0e6-40db-bf60-56a7b15eb61b",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "267b2bdf-d7c6-47f5-ae79-58d95215f4fb",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "fba85e81-3d93-4c0f-9237-554f8f2d5cee",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "1782d5fb-6dd2-4e0a-bd8e-28182389e784",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "85dbed16-64c4-4a4a-84ae-14cb8663315a",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "c703f875-6122-4e0a-b3e1-b133cccfe4de",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "57e18723-3ede-4b9d-afbe-ce7dbd8ee6ca",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "543c4b99-8433-4f16-9cfa-e4a9dfb5e43c",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "5c06f02a-91c8-4623-aa4f-8d49bf90cdac",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "402bb763-9036-415d-9b42-81c83679d64a",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "8fae01b9-b293-4583-9c74-f75974367781",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "a966de28-62b3-43eb-a269-4e62e487117d",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "6ec769f0-1a23-4b8d-ad29-97a573bd6d79",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "be64d66d-4277-4116-a158-269a280f651d",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "0753830e-59c1-4083-9d18-e147dd5a780e",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "477764b4-c02d-4637-b3b5-e951e5204b1c",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "2d376c4e-4f58-449e-8242-63e7fcdee9fa",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "34536cc3-b0bf-4c3e-91be-b3727eeb367a",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "708dcb1d-bfb1-40e8-b2f6-5445c9ca9f4b",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "6fed986b-947e-405a-b96c-6730915403b9",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "a5740f70-108b-4971-8b92-fad2b4961abe",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "5fbf90dd-8db8-4086-8be0-9e0c64c1f460",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "cb168d9e-0bef-49c3-9f91-20c9d00f7f36",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "ea8baff6-b644-448d-81d8-ea93b6686b22",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "a88b0e41-c734-4bb2-8a99-e3f19907b932",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "af1ed1ab-5690-49fb-92aa-2c001b62066d",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "OPEN",
+        "is_occupied": false
+    },
+    {
+        "id": "a5dd1240-c256-441d-a515-ea40fe557e60",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
+    },
+    {
+        "id": "1f2179ec-68ef-4039-8d2e-e44a71e2589a",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": false
+    },
+    {
+        "id": "3a1ce87e-1d11-4f42-808e-22974150cc83",
+        "bloq_id": "484e01be-1570-4ac1-a2a9-02aad3acc54e",
+        "status": "CLOSED",
+        "is_occupied": true
     }
 ]

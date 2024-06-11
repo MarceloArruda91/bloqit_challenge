@@ -130,20 +130,125 @@
         "locker_id": "a0b14f93-7187-4769-8485-a6765f2af442",
         "weight": 12.0,
         "size": "XL",
-        "status": "WAITING_PICKUP"
-    },
-    {
-        "id": "12423f29-4d38-4b74-943f-5222e342bf10",
-        "locker_id": "62bc3e63-9dbf-41b8-9996-78eaa5f4afc5",
-        "weight": 12.0,
-        "size": "XL",
         "status": "CREATED"
     },
     {
-        "id": "b33c968d-2ed4-49ba-96d6-7d55d1bab41b",
-        "locker_id": "4a42cc4b-8135-43b1-b8d4-c4101bab976e",
-        "weight": 12.0,
-        "size": "XL",
+        "id": "35ee460a-4b47-455b-9718-da8bdd0c2ef5",
+        "locker_id": "d3fc7246-21e2-40b2-a910-ef31a3828f22",
+        "weight": 10.5,
+        "size": "M",
         "status": "CREATED"
+    },
+    {
+        "id": "a95a51ff-8d7f-441e-8288-47b2a03f4536",
+        "locker_id": "209b4a89-6f41-4e4a-8b52-46c6c36fb061",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "7b4eedcd-0232-4816-a7aa-4d040808b309",
+        "locker_id": "01e4d963-72d7-421b-b2f1-9085ddb58e4b",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "d44f1218-d1b3-4108-a7bb-f53203731221",
+        "locker_id": "9c7cf4f7-50af-420c-90d5-3d2641c5ed28",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "51beb1d2-84b3-4cd5-8fc8-9319e0dae8d2",
+        "locker_id": "f45f201d-b0e6-40db-bf60-56a7b15eb61b",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
+    },
+    {
+        "id": "ef1c5567-44aa-4775-b64a-df66f477e7aa",
+        "locker_id": "267b2bdf-d7c6-47f5-ae79-58d95215f4fb",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
+    },
+    {
+        "id": "c1f12fef-bbaf-4d34-94e6-3b7df5c06c30",
+        "locker_id": "85dbed16-64c4-4a4a-84ae-14cb8663315a",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "813cac72-2a52-4358-a62b-70a246cc23ab",
+        "locker_id": "57e18723-3ede-4b9d-afbe-ce7dbd8ee6ca",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
+    },
+    {
+        "id": "041f30c5-17fc-462b-acb2-445cb0efe524",
+        "locker_id": "543c4b99-8433-4f16-9cfa-e4a9dfb5e43c",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "2cad5516-853c-495a-bda8-2d4f4280abd6",
+        "locker_id": "5c06f02a-91c8-4623-aa4f-8d49bf90cdac",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "a1562792-b538-4382-86e2-8b045f57a766",
+        "locker_id": "2d376c4e-4f58-449e-8242-63e7fcdee9fa",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
+    },
+    {
+        "id": "40072d66-1acd-4ae8-a3f7-a8d315430e76",
+        "locker_id": "708dcb1d-bfb1-40e8-b2f6-5445c9ca9f4b",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "21a0e7e0-57ec-4693-838d-fed4495788d8",
+        "locker_id": "a5740f70-108b-4971-8b92-fad2b4961abe",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "ea95d202-c520-4825-b7a1-510ab9924ad1",
+        "locker_id": "cb168d9e-0bef-49c3-9f91-20c9d00f7f36",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
+    },
+    {
+        "id": "c9161b7e-bf5d-4db0-b4a6-edf3718bf1a5",
+        "locker_id": "a88b0e41-c734-4bb2-8a99-e3f19907b932",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "7ef7df4b-0de3-4bbc-8e56-360a2cf807ad",
+        "locker_id": "a5dd1240-c256-441d-a515-ea40fe557e60",
+        "weight": 10.5,
+        "size": "M",
+        "status": "CREATED"
+    },
+    {
+        "id": "4321b19e-7d49-419e-a1b5-0e55b36afc9a",
+        "locker_id": "3a1ce87e-1d11-4f42-808e-22974150cc83",
+        "weight": 10.5,
+        "size": "M",
+        "status": "DELIVERED"
     }
 ]
