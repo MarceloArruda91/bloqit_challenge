@@ -52,7 +52,7 @@ class LockerService(BaseService[Locker]):
         return self.repository.select_unoccupied()
 
     def update_locker_status(
-        self, locker_id: str, status: LockerStatus, occupied: bool
+            self, locker_id: str, status: LockerStatus, occupied: bool
     ) -> Optional[Locker]:
         """
         Updates the status of a locker.
@@ -97,26 +97,22 @@ class RentService(BaseService[Rent]):
         super().__init__(repository)
         self.locker_service = locker_service
 
-    def create_rent(self, rent: Rent, locker_id: str) -> Optional[Rent]:
+    def create_rent(self, rent: Rent) -> Optional[Rent]:
         """
-        Creates a new rent and assigns the specified locker.
+        Creates a new rent with no specified locker.
 
         Parameters:
             rent (Rent): The rent instance to create.
-            locker_id (str): The ID of the locker to assign.
 
         Returns:
-            Optional[Rent]: The created rent instance, or None if the locker is not found or is occupied.
+            Optional[Rent]: The created rent instance
         """
-        locker = self.locker_service.get_by_id(locker_id)
-        if locker and not locker.is_occupied:
-            rent.locker_id = locker.id
-            rent.status = "CREATED"
-            rent.size = rent.size.name
-            locker.update_status(LockerStatus.CLOSED, True)
-            self.locker_service.repository.save()
-            return self.repository.add(rent)
-        return None
+
+        rent.status = rent.status
+        rent.size = rent.size.name
+        rent.locker_id = None
+        self.locker_service.repository.save()
+        return self.repository.add(rent)
 
     def update_rent_status(self, rent_id: str, status: RentStatus) -> Optional[Rent]:
         """
@@ -132,5 +128,28 @@ class RentService(BaseService[Rent]):
         rent = self.get_by_id(rent_id)
         if rent:
             rent.update_status(status.name)
+            self.repository.save()
+        return rent
+
+    def assign_locker_to_rent(self, rent_id: str, locker_id: str) -> Optional[Rent]:
+        """
+        Updates the status of a rent.
+
+        Parameters:
+            rent_id (str): The ID of the rent to update.
+            locker_id (str): The lockr assigned to the rent
+
+        Returns:
+            Optional[Rent]: The updated rent, or None if not found.
+        """
+        rent = self.get_by_id(rent_id)
+        if rent:
+            locker = self.locker_service.get_by_id(locker_id)
+
+            if locker and not locker.is_occupied:
+                locker.update_status(LockerStatus.CLOSED, True)
+                self.locker_service.repository.save()
+            rent.update_locker_id(locker_id)
+            rent.update_status(RentStatus.WAITING_DROPOFF.name)
             self.repository.save()
         return rent

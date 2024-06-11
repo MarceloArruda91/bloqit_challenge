@@ -46,12 +46,18 @@ class RentSchema(Schema):
 
 
 class RentSchemaPut(Schema):
+    locker_id = fields.Str(dump_only=True)
     id = fields.Str(dump_only=True)
     status = fields.Str(required=True, validate=validate_rent_status)
+
+class RentAssignLocker(Schema):
+    locker_id = fields.Str(required=True)
+    id = fields.Str(dump_only=True)
+
 
 
 class RentCreateSchema(Schema):
     weight = fields.Float(required=True)
     size = fields.Str(required=True, validate=validate_rent_size)
-    locker_id = fields.Str(required=True)
-    status = fields.Str(required=True, validate=validate_rent_status)
+    locker_id = fields.Str(dump_only=True)
+    status = fields.Str(dump_only=True, validate=validate_rent_status)

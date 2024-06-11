@@ -33,9 +33,11 @@ class Rent:
     size: RentSize = ""
     status: RentStatus = "CREATED"
 
-    def update_status(self, new_status: RentStatus):
+    def update_status(self, new_status: str):
         self.status = new_status
 
+    def update_locker_id(self, new_locker_id: str):
+        self.locker_id = new_locker_id
 
 @dataclass
 class Locker:

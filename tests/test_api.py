@@ -16,8 +16,7 @@ class APITestCase(unittest.TestCase):
             "status": "OPEN",
             "is_occupied": False,
         }
-        self.sample_rent = {"locker_id": "2191e1b5-99c7-45df-8302-998be394be48", "weight": 10.5, "size": "M",
-                            "status": "CREATED"}
+        self.sample_rent = {"weight": 10.5, "size": "M"}
 
     def test_get_bloqs(self):
         response = self.client.get("/api/bloqs")
@@ -107,14 +106,6 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_create_rent(self):
-        # Create a new locker
-        response = self.client.post(
-            "/api/lockers",
-            data=json.dumps(self.sample_locker),
-            content_type="application/json",
-        )
-        locker_id = json.loads(response.data.decode())["id"]
-        self.sample_rent["locker_id"] = locker_id
         response = self.client.post(
             "/api/rents/rent",
             data=json.dumps(self.sample_rent),
@@ -122,19 +113,12 @@ class APITestCase(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.data.decode())
+        updated_status = {"status": "CREATED"}
         self.assertIn("id", data)
-        self.assertEqual(data["status"], self.sample_rent["status"])
+        self.assertEqual(data["status"], updated_status["status"])
         self.assertEqual(data["size"], self.sample_rent["size"])
 
     def test_get_rent(self):
-        # Create a new locker
-        response = self.client.post(
-            "/api/lockers",
-            data=json.dumps(self.sample_locker),
-            content_type="application/json",
-        )
-        locker_id = json.loads(response.data.decode())["id"]
-        self.sample_rent["locker_id"] = locker_id
         # Create a rent first
         response = self.client.post(
             "/api/rents/rent",
@@ -150,14 +134,6 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(data["id"], rent_id)
 
     def test_update_rent_status(self):
-        # Create a new locker
-        response = self.client.post(
-            "/api/lockers",
-            data=json.dumps(self.sample_locker),
-            content_type="application/json",
-        )
-        locker_id = json.loads(response.data.decode())["id"]
-        self.sample_rent["locker_id"] = locker_id
         # Create a rent first
         response = self.client.post(
             "/api/rents/rent",
@@ -176,6 +152,38 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.data.decode())
         self.assertEqual(data["status"], updated_status["status"])
+
+    def test_assign_locker_to_rent(self):
+        # Create a rent first
+        response = self.client.post(
+            "/api/rents/rent",
+            data=json.dumps(self.sample_rent),
+            content_type="application/json",
+        )
+        rent_id = json.loads(response.data.decode())["id"]
+
+        #Create locker
+        response = self.client.post(
+            "/api/lockers",
+            data=json.dumps(self.sample_locker),
+            content_type="application/json",
+        )
+        locker_id = json.loads(response.data.decode())["id"]
+
+        # Update the rent status
+        payload = {"locker_id": locker_id}
+
+
+        response = self.client.put(
+            f"/api/rents/{rent_id}/assign",
+            data=json.dumps(payload),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.data.decode())
+        self.assertEqual(data["id"], rent_id)
+        self.assertEqual(data["locker_id"], payload["locker_id"])
+
 
 
 if __name__ == "__main__":

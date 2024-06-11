@@ -9,7 +9,7 @@ from app.schemas import (
     RentSchema,
     RentCreateSchema,
     RentSchemaPut,
-    LockerSchemaPut,
+    LockerSchemaPut, RentAssignLocker,
 )
 
 bloq_repository = BloqRepository("data/bloqs.json")
@@ -367,12 +367,9 @@ def create_rent():
         schema:
           type: object
           required:
-            - locker_id
             - weight
             - size
           properties:
-            locker_id:
-              type: string
             weight:
               type: number
             size:
@@ -386,7 +383,7 @@ def create_rent():
             id:
               type: string
             locker_id:
-              type: string
+              type: null
             weight:
               type: number
             size:
@@ -400,11 +397,12 @@ def create_rent():
     try:
         validated_data = RentCreateSchema().load(data)
     except ValidationError as err:
+        print(f'error = {err}')
         return jsonify(err.messages), 400
     new_rent = Rent(
         weight=validated_data["weight"], size=RentSize[validated_data["size"]]
     )
-    created_rent = rent_service.create_rent(new_rent, validated_data["locker_id"])
+    created_rent = rent_service.create_rent(new_rent)
     if created_rent:
         result = RentSchema().dump(created_rent)
         return jsonify(result), 201
@@ -462,4 +460,57 @@ def update_rent_status(rent_id):
     if not updated_rent:
         return jsonify({"error": "Rent not found"}), 404
     result = RentSchemaPut().dump(updated_rent)
+    return jsonify(result)
+
+@api.route("/rents/<rent_id>/assign", methods=["PUT"])
+def assign_locker_to_rent(rent_id):
+    """
+    Assign a locker to Rent.
+    ---
+    parameters:
+      - name: rent_id
+        in: path
+        type: string
+        required: true
+        description: The ID of the Rent to update
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+            - locker_id
+          properties:
+            locker_id:
+              type: string
+    responses:
+      200:
+        description: The updated Rent and the assigned locker
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+            locker_id:
+              type: string
+            weight:
+              type: number
+            size:
+              type: string
+            status:
+              type: string
+      404:
+        description: Rent not found
+    """
+    data = request.json
+    try:
+        validated_data = RentAssignLocker().load(data)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+
+    locker_id = validated_data["locker_id"]
+    updated_rent = rent_service.assign_locker_to_rent(rent_id, locker_id)
+    if not updated_rent:
+        return jsonify({"error": "Rent not found"}), 404
+    result = RentAssignLocker().dump(updated_rent)
     return jsonify(result)
