@@ -1,254 +1,30 @@
 [
-    {
-        "id": "50be06a8-1dec-4b18-a23c-e98588207752",
-        "locker_id": null,
-        "weight": 5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "40efc6fd-f10c-4561-88bf-be916613377c",
-        "locker_id": "1b8d1e89-2514-4d91-b813-044bf0ce8d20",
-        "weight": 7,
-        "size": "L",
-        "status": "WAITING_PICKUP"
-    },
-    {
-        "id": "84ba232e-ce23-4d8f-ae26-68616600df48",
-        "locker_id": "6b33b2d1-af38-4b60-a3c5-53a69f70a351",
-        "weight": 10,
-        "size": "XL",
-        "status": "WAITING_DROPOFF"
-    },
-    {
-        "id": "feb72a9a-258d-49c9-92de-f90b1f11984d",
-        "locker_id": "6b33b2d1-af38-4b60-a3c5-53a69f70a351",
-        "weight": 30,
-        "size": "XL",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "1148bcca-0593-4319-a73d-e939bbe366f4",
-        "locker_id": "8b4b59ae-8de5-4322-a426-79c29315a9f1",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "7d2a5ec5-bb15-48dd-b97b-5e5dd0048932",
-        "locker_id": "ea6db2f6-2da7-42ed-9619-d40d718b7bec",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "93e76eac-dbc7-4822-a0a4-07890e88d9a3",
-        "locker_id": "3139e8ce-ff98-4cb4-9e00-7f9d8b20e732",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "7829c843-6a6d-4e11-b3e4-1b8a77f84f40",
-        "locker_id": "75f03ea9-c825-4e76-9484-f8b7f0a1d125",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "55bb7cd2-bb02-4ef3-9fa3-0a653696b9ab",
-        "locker_id": "c4705b02-45be-4fd7-8d82-d336df1fa493",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "c3d895f5-88e0-460e-852e-41288d95abdb",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "192a0003-a446-4dc5-a01f-46a0de0dc81f",
-        "locker_id": null,
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "b8c191d9-5936-483f-b756-075e39960e62",
-        "locker_id": null,
-        "weight": 15.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "551b97d6-674c-41a3-b891-508e0c007aca",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 15,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "1da3cc1d-3b39-48cd-b856-73d2fe5050ea",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 15,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "8efc01bb-279c-440a-9d0e-52a383d31bb0",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 12,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "038c7b92-eb90-4b81-b487-18e571bd67e5",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 12,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "42f46f03-86ae-4f61-a928-f537ef85e2db",
-        "locker_id": "a44f88dc-a152-4139-9df2-9594126848dc",
-        "weight": 12,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "1a5b6924-7a54-4426-a0a8-a3108f60aa9a",
-        "locker_id": "c4705b02-45be-4fd7-8d82-d336df1fa493",
-        "weight": 15,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "abd09b15-a432-4bae-b6ca-f1a17e45a8b0",
-        "locker_id": "a0b14f93-7187-4769-8485-a6765f2af442",
-        "weight": 12.0,
-        "size": "XL",
-        "status": "CREATED"
-    },
-    {
-        "id": "35ee460a-4b47-455b-9718-da8bdd0c2ef5",
-        "locker_id": "d3fc7246-21e2-40b2-a910-ef31a3828f22",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "a95a51ff-8d7f-441e-8288-47b2a03f4536",
-        "locker_id": "209b4a89-6f41-4e4a-8b52-46c6c36fb061",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "7b4eedcd-0232-4816-a7aa-4d040808b309",
-        "locker_id": "01e4d963-72d7-421b-b2f1-9085ddb58e4b",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "d44f1218-d1b3-4108-a7bb-f53203731221",
-        "locker_id": "9c7cf4f7-50af-420c-90d5-3d2641c5ed28",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "51beb1d2-84b3-4cd5-8fc8-9319e0dae8d2",
-        "locker_id": "f45f201d-b0e6-40db-bf60-56a7b15eb61b",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "ef1c5567-44aa-4775-b64a-df66f477e7aa",
-        "locker_id": "267b2bdf-d7c6-47f5-ae79-58d95215f4fb",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "c1f12fef-bbaf-4d34-94e6-3b7df5c06c30",
-        "locker_id": "85dbed16-64c4-4a4a-84ae-14cb8663315a",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "813cac72-2a52-4358-a62b-70a246cc23ab",
-        "locker_id": "57e18723-3ede-4b9d-afbe-ce7dbd8ee6ca",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "041f30c5-17fc-462b-acb2-445cb0efe524",
-        "locker_id": "543c4b99-8433-4f16-9cfa-e4a9dfb5e43c",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "2cad5516-853c-495a-bda8-2d4f4280abd6",
-        "locker_id": "5c06f02a-91c8-4623-aa4f-8d49bf90cdac",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "a1562792-b538-4382-86e2-8b045f57a766",
-        "locker_id": "2d376c4e-4f58-449e-8242-63e7fcdee9fa",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "40072d66-1acd-4ae8-a3f7-a8d315430e76",
-        "locker_id": "708dcb1d-bfb1-40e8-b2f6-5445c9ca9f4b",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "21a0e7e0-57ec-4693-838d-fed4495788d8",
-        "locker_id": "a5740f70-108b-4971-8b92-fad2b4961abe",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "ea95d202-c520-4825-b7a1-510ab9924ad1",
-        "locker_id": "cb168d9e-0bef-49c3-9f91-20c9d00f7f36",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    },
-    {
-        "id": "c9161b7e-bf5d-4db0-b4a6-edf3718bf1a5",
-        "locker_id": "a88b0e41-c734-4bb2-8a99-e3f19907b932",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "7ef7df4b-0de3-4bbc-8e56-360a2cf807ad",
-        "locker_id": "a5dd1240-c256-441d-a515-ea40fe557e60",
-        "weight": 10.5,
-        "size": "M",
-        "status": "CREATED"
-    },
-    {
-        "id": "4321b19e-7d49-419e-a1b5-0e55b36afc9a",
-        "locker_id": "3a1ce87e-1d11-4f42-808e-22974150cc83",
-        "weight": 10.5,
-        "size": "M",
-        "status": "DELIVERED"
-    }
+  {
+    "id": "50be06a8-1dec-4b18-a23c-e98588207752",
+    "lockerId": null,
+    "weight": 5,
+    "size": "M",
+    "status": "CREATED"
+  },
+  {
+    "id": "40efc6fd-f10c-4561-88bf-be916613377c",
+    "lockerId": "1b8d1e89-2514-4d91-b813-044bf0ce8d20",
+    "weight": 7,
+    "size": "L",
+    "status": "WAITING_PICKUP"
+  },
+  {
+    "id": "84ba232e-ce23-4d8f-ae26-68616600df48",
+    "lockerId": "6b33b2d1-af38-4b60-a3c5-53a69f70a351",
+    "weight": 10,
+    "size": "XL",
+    "status": "WAITING_DROPOFF"
+  },
+  {
+    "id": "feb72a9a-258d-49c9-92de-f90b1f11984d",
+    "lockerId": "6b33b2d1-af38-4b60-a3c5-53a69f70a351",
+    "weight": 30,
+    "size": "XL",
+    "status": "DELIVERED"
+  }
 ]
