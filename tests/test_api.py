@@ -162,7 +162,7 @@ class APITestCase(unittest.TestCase):
         )
         rent_id = json.loads(response.data.decode())["id"]
 
-        #Create locker
+        # Create locker
         response = self.client.post(
             "/api/lockers",
             data=json.dumps(self.sample_locker),
@@ -173,7 +173,6 @@ class APITestCase(unittest.TestCase):
         # Update the rent status
         payload = {"locker_id": locker_id}
 
-
         response = self.client.put(
             f"/api/rents/{rent_id}/assign",
             data=json.dumps(payload),
@@ -183,7 +182,6 @@ class APITestCase(unittest.TestCase):
         data = json.loads(response.data.decode())
         self.assertEqual(data["id"], rent_id)
         self.assertEqual(data["locker_id"], payload["locker_id"])
-
 
 
 if __name__ == "__main__":

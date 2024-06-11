@@ -39,6 +39,7 @@ class Rent:
     def update_locker_id(self, new_locker_id: str):
         self.locker_id = new_locker_id
 
+
 @dataclass
 class Locker:
     id: str = field(default_factory=generate_id)

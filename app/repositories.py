@@ -40,6 +40,7 @@ class LockerRepository(BaseRepository[Locker]):
         """
         super().__init__(data_file, Locker)
 
+    #This method is currently not being used
     def select_unoccupied(self) -> Optional[Locker]:
         """
         Selects an unoccupied locker.

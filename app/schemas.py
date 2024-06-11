@@ -50,10 +50,10 @@ class RentSchemaPut(Schema):
     id = fields.Str(dump_only=True)
     status = fields.Str(required=True, validate=validate_rent_status)
 
+
 class RentAssignLocker(Schema):
     locker_id = fields.Str(required=True)
     id = fields.Str(dump_only=True)
-
 
 
 class RentCreateSchema(Schema):

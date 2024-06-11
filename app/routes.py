@@ -9,7 +9,8 @@ from app.schemas import (
     RentSchema,
     RentCreateSchema,
     RentSchemaPut,
-    LockerSchemaPut, RentAssignLocker,
+    LockerSchemaPut,
+    RentAssignLocker,
 )
 
 bloq_repository = BloqRepository("data/bloqs.json")
@@ -397,7 +398,7 @@ def create_rent():
     try:
         validated_data = RentCreateSchema().load(data)
     except ValidationError as err:
-        print(f'error = {err}')
+        print(f"error = {err}")
         return jsonify(err.messages), 400
     new_rent = Rent(
         weight=validated_data["weight"], size=RentSize[validated_data["size"]]
@@ -461,6 +462,7 @@ def update_rent_status(rent_id):
         return jsonify({"error": "Rent not found"}), 404
     result = RentSchemaPut().dump(updated_rent)
     return jsonify(result)
+
 
 @api.route("/rents/<rent_id>/assign", methods=["PUT"])
 def assign_locker_to_rent(rent_id):

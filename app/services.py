@@ -52,7 +52,7 @@ class LockerService(BaseService[Locker]):
         return self.repository.select_unoccupied()
 
     def update_locker_status(
-            self, locker_id: str, status: LockerStatus, occupied: bool
+        self, locker_id: str, status: LockerStatus, occupied: bool
     ) -> Optional[Locker]:
         """
         Updates the status of a locker.
