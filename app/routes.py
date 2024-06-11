@@ -1,3 +1,5 @@
+import logging
+
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 from app.services import BloqService, LockerService, RentService
@@ -22,6 +24,20 @@ locker_service = LockerService(locker_repository)
 rent_service = RentService(rent_repository, locker_service)
 
 api = Blueprint("api", __name__)
+
+
+@api.before_request
+def log_request_info():
+    logging.info(f"Request: {request.method} {request.url}")
+    logging.info(f"Headers: {dict(request.headers)}")
+    logging.info(f'Body: {request.get_data().decode("utf-8")}')
+
+
+@api.after_request
+def log_response_info(response):
+    logging.info(f"Response status: {response.status}")
+    logging.info(f"Response headers: {dict(response.headers)}")
+    return response
 
 
 @api.route("/bloqs", methods=["GET"])
@@ -77,6 +93,7 @@ def get_bloq(bloq_id):
     """
     bloq = bloq_service.get_by_id(bloq_id)
     if not bloq:
+        logging.warning(f"Bloq not found: {bloq_id}")
         return jsonify({"error": "Bloq not found"}), 404
     result = BloqSchema().dump(bloq)
     return jsonify(result)
@@ -118,6 +135,7 @@ def create_bloq():
     try:
         validated_data = BloqSchema().load(data)
     except ValidationError as err:
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
     new_bloq = Bloq(**validated_data)
     created_bloq = bloq_service.create(new_bloq)
@@ -182,6 +200,7 @@ def get_locker(locker_id):
     """
     locker = locker_service.get_by_id(locker_id)
     if not locker:
+        logging.warning(f"Locker not found: {locker_id}")
         return jsonify({"error": "Locker not found"}), 404
     result = LockerSchema().dump(locker)
     return jsonify(result)
@@ -228,6 +247,7 @@ def create_locker():
     try:
         validated_data = LockerSchema().load(data)
     except ValidationError as err:
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
     new_locker = Locker(**validated_data)
     created_locker = locker_service.create(new_locker)
@@ -280,11 +300,13 @@ def update_locker_status(locker_id):
     try:
         validated_data = LockerSchemaPut().load(data)
     except ValidationError as err:
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
     status = validated_data["status"]
     occupied = validated_data["is_occupied"]
     updated_locker = locker_service.update_locker_status(locker_id, status, occupied)
     if not updated_locker:
+        logging.warning(f"Locker not found: {locker_id}")
         return jsonify({"error": "Locker not found"}), 404
     result = LockerSchemaPut().dump(updated_locker)
     return jsonify(result)
@@ -351,6 +373,7 @@ def get_rent(rent_id):
     """
     rent = rent_service.get_by_id(rent_id)
     if not rent:
+        logging.warning(f"Rent not found: {rent_id}")
         return jsonify({"error": "Rent not found"}), 404
     result = RentSchema().dump(rent)
     return jsonify(result)
@@ -398,7 +421,7 @@ def create_rent():
     try:
         validated_data = RentCreateSchema().load(data)
     except ValidationError as err:
-        print(f"error = {err}")
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
     new_rent = Rent(
         weight=validated_data["weight"], size=RentSize[validated_data["size"]]
@@ -408,6 +431,7 @@ def create_rent():
         result = RentSchema().dump(created_rent)
         return jsonify(result), 201
     else:
+        logging.warning("Locker not found or is already occupied")
         return jsonify({"error": "Locker not found or is already occupied"}), 404
 
 
@@ -455,10 +479,12 @@ def update_rent_status(rent_id):
     try:
         validated_data = RentSchemaPut().load(data)
     except ValidationError as err:
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
     status = RentStatus[validated_data["status"]]
     updated_rent = rent_service.update_rent_status(rent_id, status)
     if not updated_rent:
+        logging.warning(f"Rent not found: {rent_id}")
         return jsonify({"error": "Rent not found"}), 404
     result = RentSchemaPut().dump(updated_rent)
     return jsonify(result)
@@ -508,11 +534,13 @@ def assign_locker_to_rent(rent_id):
     try:
         validated_data = RentAssignLocker().load(data)
     except ValidationError as err:
+        logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
 
     locker_id = validated_data["locker_id"]
     updated_rent = rent_service.assign_locker_to_rent(rent_id, locker_id)
     if not updated_rent:
+        logging.warning(f"Rent not found: {rent_id}")
         return jsonify({"error": "Rent not found"}), 404
     result = RentAssignLocker().dump(updated_rent)
     return jsonify(result)

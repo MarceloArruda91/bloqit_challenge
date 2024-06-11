@@ -1,53 +1,52 @@
 import json
-from typing import List, Type, TypeVar, Optional, Generic
+from typing import List, Type, Optional, Dict, Any
 from dataclasses import fields, asdict
 from app.utils import generate_id
 from enum import Enum
 
-T = TypeVar("T")
 
-
-class BaseRepository(Generic[T]):
+class BaseRepository:
     """
     A generic base repository class for managing data access and persistence.
 
     Attributes:
-        data_file (str): The path to the JSON file storing the data.
-        cls (Type[T]): The class type of the entity.
-        data (List[T]): The in-memory list of entity instances.
+        __data_file (str): The path to the JSON file storing the data.
+        __cls (Type[Any]): The class type of the entity.
+        __data (List[Any]): The in-memory list of entity instances.
 
     Methods:
         load_data(): Loads data from the JSON file into memory.
-        map_data_keys(data: dict): Maps JSON keys to class attributes.
-        get_all(): Returns all entity instances.
-        get_by_id(entity_id: str): Returns an entity instance by its ID.
-        add(entity: T): Adds a new entity instance.
-        save(): Saves the current state of data to the JSON file.
+        map_data_keys(data: dict) -> dict: Maps JSON keys to class attributes.
+        get_all() -> List[Any]: Returns all entity instances.
+        get_by_id(entity_id: str) -> Optional[Any]: Returns an entity instance by its ID.
+        create(entity: Any) -> Any: Adds a new entity instance.
+        save_data(): Saves the current state of data to the JSON file.
+        serialize_entity(entity: Any) -> Dict[str, Any]: Serializes an entity to a dictionary.
     """
 
-    def __init__(self, data_file: str, cls: Type[T]):
+    def __init__(self, data_file: str, cls: Any):
         """
         Initializes the BaseRepository with the given data file and class type.
 
         Parameters:
             data_file (str): The path to the JSON file.
-            cls (Type[T]): The class type of the entity.
+            cls (Type[Any]): The class type of the entity.
         """
-        self.data_file = data_file
-        self.cls = cls
-        self.data = self.load_data()
+        self.__data_file = data_file
+        self.__cls = cls
+        self.__data = self.load_data()
 
-    def load_data(self) -> List[T]:
+    def load_data(self) -> List[Any]:
         """
         Loads data from the JSON file into memory.
 
         Returns:
-            List[T]: A list of entity instances.
+            List[Any]: A list of entity instances.
         """
-        with open(self.data_file, "r", encoding="utf-8") as f:
-            return [self.cls(**self.map_data_keys(item)) for item in json.load(f)]
+        with open(self.__data_file, "r", encoding="utf-8") as f:
+            return [self.__cls(**self.map_data_keys(item)) for item in json.load(f)]
 
-    def map_data_keys(self, data: dict) -> dict:
+    def map_data_keys(self, data: dict) -> Dict[str, Any]:
         """
         Maps JSON keys to class attributes using metadata.
 
@@ -57,22 +56,22 @@ class BaseRepository(Generic[T]):
         Returns:
             dict: The dictionary with mapped keys.
         """
-        for field in fields(self.cls):
+        for field in fields(self.__cls):
             data_key = field.metadata.get("data_key")
-            if data_key and data_key in data:
+            if data_key in data:
                 data[field.name] = data.pop(data_key)
         return data
 
-    def get_all(self) -> List[T]:
+    def get_all(self) -> List[Any]:
         """
         Returns all entity instances.
 
         Returns:
-            List[T]: A list of all entity instances.
+            List[Any]: A list of all entity instances.
         """
-        return self.data
+        return self.__data
 
-    def get_by_id(self, entity_id: str) -> Optional[T]:
+    def get_by_id(self, entity_id: str) -> Optional[Any]:
         """
         Returns an entity instance by its ID.
 
@@ -80,49 +79,49 @@ class BaseRepository(Generic[T]):
             entity_id (str): The ID of the entity.
 
         Returns:
-            Optional[T]: The entity instance, or None if not found.
+            Optional[Any]: The entity instance, or None if not found.
         """
-        return next((item for item in self.data if item.id == entity_id), None)
+        return next((item for item in self.__data if item.id == entity_id), None)
 
-    def add(self, entity: T) -> T:
+    def create(self, entity: Any) -> Any:
         """
         Adds a new entity instance.
 
         Parameters:
-            entity (T): The entity instance to add.
+            entity (Any): The entity instance to add.
 
         Returns:
-            T: The added entity instance.
+            Any: The added entity instance.
         """
         entity.id = generate_id()
-        self.data.append(entity)
-        self.save()
+        self.__data.append(entity)
+        self.save_data()
         return entity
 
-    def save(self):
+    def save_data(self):
         """
         Saves the current state of data to the JSON file.
         """
-        with open(self.data_file, "w", encoding="utf-8") as f:
+        with open(self.__data_file, "w", encoding="utf-8") as f:
             json.dump(
-                [self.serialize_entity(item) for item in self.data],
+                [self.serialize_entity(item) for item in self.__data],
                 f,
                 ensure_ascii=False,
                 indent=4,
             )
 
-    def serialize_entity(self, entity: T) -> dict:
+    def serialize_entity(self, entity: Any) -> Dict[str, Any]:
         """
         Serializes an entity to a dictionary, converting Enums to their values.
 
         Parameters:
-            entity (T): The entity instance to serialize.
+            entity (Any): The entity instance to serialize.
 
         Returns:
-            dict: The serialized entity as a dictionary.
+            Dict[str, Any]: The serialized entity as a dictionary.
         """
         entity_dict = asdict(entity)
-        for field in fields(self.cls):
+        for field in fields(self.__cls):
             value = entity_dict.get(field.name)
             if isinstance(value, Enum):
                 entity_dict[field.name] = value.value

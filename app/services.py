@@ -4,11 +4,11 @@ from app.repositories import BloqRepository, LockerRepository, RentRepository
 from app.base_service import BaseService
 
 
-class BloqService(BaseService[Bloq]):
+class BloqService(BaseService):
     """
     A service class for handling business logic related to Bloq entities.
 
-    Inherits from BaseService[Bloq].
+    Inherits from BaseService.
     """
 
     def __init__(self, repository: BloqRepository):
@@ -21,11 +21,11 @@ class BloqService(BaseService[Bloq]):
         super().__init__(repository)
 
 
-class LockerService(BaseService[Locker]):
+class LockerService(BaseService):
     """
     A service class for handling business logic related to Locker entities.
 
-    Inherits from BaseService[Locker].
+    Inherits from BaseService.
 
     Methods:
         select_unoccupied_locker(): Selects an unoccupied locker.
@@ -68,22 +68,23 @@ class LockerService(BaseService[Locker]):
         locker = self.get_by_id(locker_id)
         if locker:
             locker.update_status(status, occupied)
-            self.repository.save()
+            self.repository.save_data()
         return locker
 
 
-class RentService(BaseService[Rent]):
+class RentService(BaseService):
     """
     A service class for handling business logic related to Rent entities.
 
-    Inherits from BaseService[Rent].
+    Inherits from BaseService.
 
     Attributes:
         locker_service (LockerService): The locker service instance for coordinating locker operations.
 
     Methods:
-        create_rent(rent: Rent, locker_id: str): Creates a new rent and assigns the specified locker.
+        create_rent(rent: Rent): Creates a new rent with no specified locker.
         update_rent_status(rent_id: str, status: RentStatus): Updates the status of a rent.
+        assign_locker_to_rent(rent_id: str, locker_id: str): Assigns a locker to a rent.
     """
 
     def __init__(self, repository: RentRepository, locker_service: LockerService):
@@ -105,14 +106,11 @@ class RentService(BaseService[Rent]):
             rent (Rent): The rent instance to create.
 
         Returns:
-            Optional[Rent]: The created rent instance
+            Optional[Rent]: The created rent instance.
         """
-
-        rent.status = rent.status
         rent.size = rent.size.name
-        rent.locker_id = None
-        self.locker_service.repository.save()
-        return self.repository.add(rent)
+        self.locker_service.repository.save_data()
+        return self.repository.create(rent)
 
     def update_rent_status(self, rent_id: str, status: RentStatus) -> Optional[Rent]:
         """
@@ -128,16 +126,16 @@ class RentService(BaseService[Rent]):
         rent = self.get_by_id(rent_id)
         if rent:
             rent.update_status(status.name)
-            self.repository.save()
+            self.repository.save_data()
         return rent
 
     def assign_locker_to_rent(self, rent_id: str, locker_id: str) -> Optional[Rent]:
         """
-        Updates the status of a rent.
+        Assigns a locker to a rent.
 
         Parameters:
             rent_id (str): The ID of the rent to update.
-            locker_id (str): The lockr assigned to the rent
+            locker_id (str): The ID of the locker to assign to the rent.
 
         Returns:
             Optional[Rent]: The updated rent, or None if not found.
@@ -148,8 +146,8 @@ class RentService(BaseService[Rent]):
 
             if locker and not locker.is_occupied:
                 locker.update_status(LockerStatus.CLOSED, True)
-                self.locker_service.repository.save()
+                self.locker_service.repository.save_data()
             rent.update_locker_id(locker_id)
             rent.update_status(RentStatus.WAITING_DROPOFF.name)
-            self.repository.save()
+            self.repository.save_data()
         return rent

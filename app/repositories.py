@@ -4,11 +4,11 @@ from app.utils import select_unoccupied_locker
 from typing import Optional
 
 
-class BloqRepository(BaseRepository[Bloq]):
+class BloqRepository(BaseRepository):
     """
     A repository class for managing Bloq entities.
 
-    Inherits from BaseRepository[Bloq].
+    Inherits from BaseRepository.
     """
 
     def __init__(self, data_file: str):
@@ -21,11 +21,11 @@ class BloqRepository(BaseRepository[Bloq]):
         super().__init__(data_file, Bloq)
 
 
-class LockerRepository(BaseRepository[Locker]):
+class LockerRepository(BaseRepository):
     """
     A repository class for managing Locker entities.
 
-    Inherits from BaseRepository[Locker].
+    Inherits from BaseRepository.
 
     Methods:
         select_unoccupied(): Selects an unoccupied locker.
@@ -40,7 +40,6 @@ class LockerRepository(BaseRepository[Locker]):
         """
         super().__init__(data_file, Locker)
 
-    #This method is currently not being used
     def select_unoccupied(self) -> Optional[Locker]:
         """
         Selects an unoccupied locker.
@@ -48,14 +47,14 @@ class LockerRepository(BaseRepository[Locker]):
         Returns:
             Optional[Locker]: An unoccupied locker, or None if none are available.
         """
-        return select_unoccupied_locker(self.data)
+        return select_unoccupied_locker(self.__data)
 
 
-class RentRepository(BaseRepository[Rent]):
+class RentRepository(BaseRepository):
     """
     A repository class for managing Rent entities.
 
-    Inherits from BaseRepository[Rent].
+    Inherits from BaseRepository.
     """
 
     def __init__(self, data_file: str):
