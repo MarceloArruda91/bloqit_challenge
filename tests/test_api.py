@@ -91,7 +91,7 @@ class APITestCase(unittest.TestCase):
 
         # Update the locker status
         updated_status = {"status": "CLOSED", "is_occupied": False}
-        response = self.client.put(
+        response = self.client.patch(
             f"/api/lockers/{locker_id}/status",
             data=json.dumps(updated_status),
             content_type="application/json",
@@ -144,7 +144,7 @@ class APITestCase(unittest.TestCase):
 
         # Update the rent status
         updated_status = {"status": "DELIVERED"}
-        response = self.client.put(
+        response = self.client.patch(
             f"/api/rents/{rent_id}/status",
             data=json.dumps(updated_status),
             content_type="application/json",
@@ -173,7 +173,7 @@ class APITestCase(unittest.TestCase):
         # Update the rent status
         payload = {"locker_id": locker_id}
 
-        response = self.client.put(
+        response = self.client.patch(
             f"/api/rents/{rent_id}/assign",
             data=json.dumps(payload),
             content_type="application/json",

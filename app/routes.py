@@ -10,8 +10,8 @@ from app.schemas import (
     LockerSchema,
     RentSchema,
     RentCreateSchema,
-    RentSchemaPut,
-    LockerSchemaPut,
+    RentSchemaPatch,
+    LockerSchemaPatch,
     RentAssignLocker,
 )
 
@@ -255,7 +255,7 @@ def create_locker():
     return jsonify(result), 201
 
 
-@api.route("/lockers/<locker_id>/status", methods=["PUT"])
+@api.route("/lockers/<locker_id>/status", methods=["PATCH"])
 def update_locker_status(locker_id):
     """
     Update the status of a Locker.
@@ -298,7 +298,7 @@ def update_locker_status(locker_id):
     """
     data = request.json
     try:
-        validated_data = LockerSchemaPut().load(data)
+        validated_data = LockerSchemaPatch().load(data)
     except ValidationError as err:
         logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
@@ -308,7 +308,7 @@ def update_locker_status(locker_id):
     if not updated_locker:
         logging.warning(f"Locker not found: {locker_id}")
         return jsonify({"error": "Locker not found"}), 404
-    result = LockerSchemaPut().dump(updated_locker)
+    result = LockerSchemaPatch().dump(updated_locker)
     return jsonify(result)
 
 
@@ -435,7 +435,7 @@ def create_rent():
         return jsonify({"error": "Locker not found or is already occupied"}), 404
 
 
-@api.route("/rents/<rent_id>/status", methods=["PUT"])
+@api.route("/rents/<rent_id>/status", methods=["PATCH"])
 def update_rent_status(rent_id):
     """
     Update the status of a Rent.
@@ -477,7 +477,7 @@ def update_rent_status(rent_id):
     """
     data = request.json
     try:
-        validated_data = RentSchemaPut().load(data)
+        validated_data = RentSchemaPatch().load(data)
     except ValidationError as err:
         logging.error(f"Validation error: {err.messages}")
         return jsonify(err.messages), 400
@@ -486,11 +486,11 @@ def update_rent_status(rent_id):
     if not updated_rent:
         logging.warning(f"Rent not found: {rent_id}")
         return jsonify({"error": "Rent not found"}), 404
-    result = RentSchemaPut().dump(updated_rent)
+    result = RentSchemaPatch().dump(updated_rent)
     return jsonify(result)
 
 
-@api.route("/rents/<rent_id>/assign", methods=["PUT"])
+@api.route("/rents/<rent_id>/assign", methods=["PATCH"])
 def assign_locker_to_rent(rent_id):
     """
     Assign a locker to Rent.

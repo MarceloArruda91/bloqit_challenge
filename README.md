@@ -44,15 +44,15 @@ Bloqit is a company that builds software to assist first, middle, and last-mile 
 - **GET /api/lockers**: Retrieve a list of all Lockers.
 - **POST /api/lockers**: Create a new Locker.
 - **GET /api/lockers/{locker_id}**: Retrieve a specific Locker by its ID.
-- **PUT /api/lockers/{locker_id}/status**: Update the status of a Locker.
+- **PATCH /api/lockers/{locker_id}/status**: Update the status of a Locker.
 
 ### Rents
 
 - **GET /api/rents**: Retrieve a list of all Rents.
 - **POST /api/rents/rent**: Create a new Rent.
 - **GET /api/rents/{rent_id}**: Retrieve a specific Rent by its ID.
-- **PUT /api/rents/{rent_id}/status**: Update the status of a Rent.
-- **PUT /api/rents/{rent_id}/assign**: Assign a locker to a rent.
+- **PATCH /api/rents/{rent_id}/status**: Update the status of a Rent.
+- **PATCH /api/rents/{rent_id}/assign**: Assign a locker to a rent.
 
 ## Testing
 

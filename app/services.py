@@ -1,5 +1,5 @@
 from typing import Optional
-from app.models import Bloq, Locker, Rent, RentStatus, LockerStatus
+from app.models import Locker, Rent, RentStatus, LockerStatus
 from app.repositories import BloqRepository, LockerRepository, RentRepository
 from app.base_service import BaseService
 
